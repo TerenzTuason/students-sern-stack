@@ -20,7 +20,7 @@ const Home = () => {
 
     const handleDelete = async (id) => {
         try{
-            await axios.delete("http://localhost:4000/delete_student/" + id)
+            await axios.delete("https://students-sern-stack-production.up.railway.app/delete_student/" + id)
             window.location.reload()
         } catch (err) {
             console.log(err)
