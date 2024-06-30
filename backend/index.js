@@ -16,7 +16,8 @@ app.use(express.json())
 const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`
 
 // initialize the mysql connection
-const db = mysql.createConnection(urlDB)
+
+// const db = mysql.createConnection(urlDB)
 
 // const db = mysql.createConnection({
 //     host: process.env.DB_HOST,
@@ -24,6 +25,14 @@ const db = mysql.createConnection(urlDB)
 //     password: process.env.DB_PASS,
 //     database: process.env.DB_NAME
 // })
+
+const db = mysql.createConnection({
+    host: process.env.MYSQLHOST,
+    user: process.env.MYSQLUSER,
+    password: process.env.MYSQLPASSWORD,
+    database: process.env.MYSQLDATABASE,
+    port: process.env.MYSQLPORT
+})
 
 // route for getting all the data
 app.get("/", (req, res) => {
