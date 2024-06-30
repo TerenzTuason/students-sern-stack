@@ -8,7 +8,7 @@ const mysql = require("mysql2");
 require('dotenv').config()
 
 // use cors for cross-origin between frontend and backend
-app.use(cors())
+// app.use(cors())
 
 // middleware function for json data parsing
 app.use(express.json())
