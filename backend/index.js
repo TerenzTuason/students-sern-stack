@@ -27,7 +27,6 @@ const db = mysql.createPool({
 
 // route for getting all the data
 app.get("/", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
     const sql = "SELECT * FROM student"
     db.query(sql, (err, data) => {
         if(err) return res.json(err);
