@@ -13,7 +13,7 @@ app.use(cors())
 // middleware function for json data parsing
 app.use(express.json())
 
-const urlDB = `mysql://root:kGESwrpoJjGuAypzhnbZxlcXeLUAEOck@roundhouse.proxy.rlwy.net:31347/railway`
+const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`
 
 // initialize the mysql connection
 const db = mysql.createConnection(urlDB)
