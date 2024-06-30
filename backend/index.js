@@ -14,16 +14,18 @@ app.use(cors())
 app.use(express.json())
 
 // initialize the mysql connection
-const db = mysql.createPool({
-    host: process.env.MYSQLHOST,
-    user: process.env.MYSQLUSER,
-    password: process.env.MYSQLPASSWORD,
-    database: process.env.MYSQLDATABASE,
-    port: process.env.MYSQLPORT,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
+// const db = mysql.createPool({
+//     host: process.env.MYSQLHOST,
+//     user: process.env.MYSQLUSER,
+//     password: process.env.MYSQLPASSWORD,
+//     database: process.env.MYSQLDATABASE,
+//     port: process.env.MYSQLPORT,
+//     waitForConnections: true,
+//     connectionLimit: 10,
+//     queueLimit: 0
+// });
+
+const db = mysql.createConnection(`mysql://${MYSQLUSER}:${MYSQLPASSWORD}@${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}`)
 
 // route for getting all the data
 app.get("/", (req, res) => {
@@ -32,12 +34,6 @@ app.get("/", (req, res) => {
         if(err) return res.json(err);
         return res.json(data)
     })
-
-    console.log(process.env.MYSQLHOST)
-    console.log(process.env.MYSQLUSER)
-    console.log(process.env.MYSQLPASSWORD)
-    console.log(process.env.MYSQLDATABASE)
-    console.log(process.env.MYSQLPORT)
 })
 
 // route for getting a single data
