@@ -1,14 +1,14 @@
 // need to npm install these dependencies first
 const express = require("express")
 const app = express()
-// const cors = require("cors")
+const cors = require("cors")
 const mysql = require("mysql2");
 
 // dependency for .env file
 require('dotenv').config()
 
 // use cors for cross-origin between frontend and backend
-// app.use(cors())
+app.use(cors())
 
 // middleware function for json data parsing
 app.use(express.json())
@@ -27,6 +27,7 @@ const db = mysql.createPool({
 
 // route for getting all the data
 app.get("/", (req, res) => {
+    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
     const sql = "SELECT * FROM student"
     db.query(sql, (err, data) => {
         if(err) return res.json(err);
