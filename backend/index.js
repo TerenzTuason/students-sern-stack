@@ -2,7 +2,8 @@
 const express = require("express")
 const app = express()
 const cors = require("cors")
-const mysql = require("mysql")
+// const mysql = require("mysql")
+const mysql = require("mysql2");
 
 // dependency for .env file
 require('dotenv').config()
@@ -13,7 +14,7 @@ app.use(cors())
 // middleware function for json data parsing
 app.use(express.json())
 
-const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`
+// const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`
 
 // initialize the mysql connection
 
@@ -26,13 +27,24 @@ const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${p
 //     database: process.env.DB_NAME
 // })
 
-const db = mysql.createConnection({
+// const db = mysql.createConnection({
+//     host: process.env.MYSQLHOST,
+//     user: process.env.MYSQLUSER,
+//     password: process.env.MYSQLPASSWORD,
+//     database: process.env.MYSQLDATABASE,
+//     port: process.env.MYSQLPORT
+// })
+
+const db = mysql.createPool({
     host: process.env.MYSQLHOST,
     user: process.env.MYSQLUSER,
     password: process.env.MYSQLPASSWORD,
     database: process.env.MYSQLDATABASE,
-    port: process.env.MYSQLPORT
-})
+    port: process.env.MYSQLPORT,
+    waitForConnections: true,
+    connectionLimit: 10, // Adjust as needed
+    queueLimit: 0
+});
 
 // route for getting all the data
 app.get("/", (req, res) => {
