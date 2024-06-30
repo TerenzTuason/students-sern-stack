@@ -14,37 +14,22 @@ app.use(cors())
 // middleware function for json data parsing
 app.use(express.json())
 
-// const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`
+const urlDB = `mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`
 
 // initialize the mysql connection
 
-// const db = mysql.createConnection(urlDB)
+const db = mysql.createPool(urlDB)
 
-// const db = mysql.createConnection({
-//     host: process.env.DB_HOST,
-//     user: process.env.DB_USER,
-//     password: process.env.DB_PASS,
-//     database: process.env.DB_NAME
-// })
-
-// const db = mysql.createConnection({
+// const db = mysql.createPool({
 //     host: process.env.MYSQLHOST,
 //     user: process.env.MYSQLUSER,
 //     password: process.env.MYSQLPASSWORD,
 //     database: process.env.MYSQLDATABASE,
-//     port: process.env.MYSQLPORT
-// })
-
-const db = mysql.createPool({
-    host: process.env.MYSQLHOST,
-    user: process.env.MYSQLUSER,
-    password: process.env.MYSQLPASSWORD,
-    database: process.env.MYSQLDATABASE,
-    port: process.env.MYSQLPORT,
-    waitForConnections: true,
-    connectionLimit: 10, // Adjust as needed
-    queueLimit: 0
-});
+//     port: process.env.MYSQLPORT,
+//     waitForConnections: true,
+//     connectionLimit: 10, // Adjust as needed
+//     queueLimit: 0
+// });
 
 // route for getting all the data
 app.get("/", (req, res) => {
