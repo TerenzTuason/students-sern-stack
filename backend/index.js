@@ -25,7 +25,7 @@ app.use(express.json())
 //     queueLimit: 0
 // });
 
-const db = mysql.createConnection(`mysql://${MYSQLUSER}:${MYSQLPASSWORD}@${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}`)
+const db = mysql.createConnection(`mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`)
 
 // route for getting all the data
 app.get("/", (req, res) => {
