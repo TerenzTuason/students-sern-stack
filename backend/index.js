@@ -1,14 +1,14 @@
 // need to npm install these dependencies first
 const express = require("express")
 const app = express()
-// const cors = require("cors")
+const cors = require("cors")
 const mysql = require("mysql2");
 
 // dependency for .env file
 require('dotenv').config()
 
 // use cors for cross-origin between frontend and backend
-// app.use(cors())
+app.use(cors())
 
 // middleware function for json data parsing
 app.use(express.json())
@@ -32,6 +32,12 @@ app.get("/", (req, res) => {
         if(err) return res.json(err);
         return res.json(data)
     })
+
+    console.log(process.env.MYSQLHOST)
+    console.log(process.env.MYSQLUSER)
+    console.log(process.env.MYSQLPASSWORD)
+    console.log(process.env.MYSQLDATABASE)
+    console.log(process.env.MYSQLPORT)
 })
 
 // route for getting a single data
