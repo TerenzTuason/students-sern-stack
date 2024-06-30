@@ -1,14 +1,14 @@
 // need to npm install these dependencies first
 const express = require("express")
 const app = express()
-// const cors = require("cors")
+const cors = require("cors")
 const mysql = require("mysql")
 
 // dependency for .env file
 require('dotenv').config()
 
 // use cors for cross-origin between frontend and backend
-// app.use(cors())
+app.use(cors())
 
 // middleware function for json data parsing
 app.use(express.json())
@@ -29,7 +29,7 @@ const db = mysql.createConnection(urlDB)
 app.get("/", (req, res) => {
     const sql = "SELECT * FROM student"
     db.query(sql, (err, data) => {
-        if(err) return res.json("Error");
+        if(err) return res.json(err);
         return res.json(data)
     })
 })
@@ -41,7 +41,7 @@ app.get("/:id", (req, res) => {
     const id = req.params.id;
 
     db.query(sql, [id], (err, data) => {
-        if (err) return res.json("Error");
+        if (err) return res.json(err);
         return res.json(data);
     });
 })
@@ -54,7 +54,7 @@ app.post("/new_student", (req, res) => {
         req.body.email
     ]
     db.query(sql, [values], (err, data) => {
-        if(err) return res.json("Error");
+        if(err) return res.json(err);
         return res.json(data)
     })
 })
@@ -71,7 +71,7 @@ app.put("/update_student/:id", (req, res) => {
     const id = req.params.id
 
     db.query(sql, [...values, id], (err, data) => {
-        if(err) return res.json("Error");
+        if(err) return res.json(err);
         return res.json(data)
     })
 })
@@ -83,7 +83,7 @@ app.delete("/delete_student/:id", (req, res) => {
     const id = req.params.id
 
     db.query(sql, [id], (err, data) => {
-        if(err) return res.json("Error");
+        if(err) return res.json(err);
         return res.json(data)
     })
 })
