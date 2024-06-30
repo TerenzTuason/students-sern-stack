@@ -8,7 +8,12 @@ const mysql = require("mysql2");
 require('dotenv').config()
 
 // use cors for cross-origin between frontend and backend
-app.use(cors())
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    // other options can be added as needed
+};
+
+app.use(cors(corsOptions));
 
 // middleware function for json data parsing
 app.use(express.json())
@@ -27,7 +32,6 @@ const db = mysql.createPool({
 
 // route for getting all the data
 app.get("/", (req, res) => {
-    res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
     const sql = "SELECT * FROM student"
     db.query(sql, (err, data) => {
         if(err) return res.json(err);
