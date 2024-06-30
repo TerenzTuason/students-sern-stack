@@ -1,7 +1,7 @@
 // need to npm install these dependencies first
 const express = require("express")
 const app = express()
-const cors = require("cors")
+// const cors = require("cors")
 const mysql = require("mysql2");
 
 // dependency for .env file
