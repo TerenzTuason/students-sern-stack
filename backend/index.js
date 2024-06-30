@@ -25,6 +25,15 @@ const db = mysql.createConnection(urlDB)
 //     database: process.env.DB_NAME
 // })
 
+db.connect((err) => {
+    if (err) {
+        console.error('Error connecting to MySQL:', err);
+        process.exit(1);
+    } else {
+        console.log('Connected to MySQL database');
+    }
+});
+
 // route for getting all the data
 app.get("/", (req, res) => {
     const sql = "SELECT * FROM student"
@@ -88,9 +97,8 @@ app.delete("/delete_student/:id", (req, res) => {
     })
 })
 
-app.listen(process.env.PORT, () => {
-    console.log("listening to port 4000")
-})
-
-
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
 

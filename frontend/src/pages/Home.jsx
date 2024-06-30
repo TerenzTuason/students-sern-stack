@@ -10,7 +10,7 @@ const Home = () => {
     useEffect(() => {
 
         // gets the data from the API
-        axios.get("http://localhost:4000/")
+        axios.get("https://students-sern-stack-production.up.railway.app/")
         .then(res => 
             setStudents(res.data)
         )
