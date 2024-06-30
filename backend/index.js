@@ -14,17 +14,6 @@ app.use(cors())
 app.use(express.json())
 
 // initialize the mysql connection
-// const db = mysql.createPool({
-//     host: process.env.MYSQLHOST,
-//     user: process.env.MYSQLUSER,
-//     password: process.env.MYSQLPASSWORD,
-//     database: process.env.MYSQLDATABASE,
-//     port: process.env.MYSQLPORT,
-//     waitForConnections: true,
-//     connectionLimit: 10,
-//     queueLimit: 0
-// });
-
 const db = mysql.createConnection(`mysql://${process.env.MYSQLUSER}:${process.env.MYSQLPASSWORD}@${process.env.MYSQLHOST}:${process.env.MYSQLPORT}/${process.env.MYSQLDATABASE}`)
 
 // route for getting all the data

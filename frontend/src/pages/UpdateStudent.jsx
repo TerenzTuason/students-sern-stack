@@ -16,7 +16,7 @@ const UpdateStudent = () => {
     useEffect(() => {
 
         // gets the data from the API
-        axios.get("http://localhost:4000/" + id)
+        axios.get("https://students-sern-stack-production.up.railway.app/" + id)
         .then(res => {
             setName(res.data[0].Name)
             setEmail(res.data[0].Email)
@@ -30,7 +30,7 @@ const UpdateStudent = () => {
 
         // updates the data in the API
         e.preventDefault()
-        axios.put("http://localhost:4000/update_student/" + id, { name, email })    // name and email are the req values
+        axios.put("https://students-sern-stack-production.up.railway.app/update_student/" + id, { name, email })    // name and email are the req values
         .then(res => {
             console.log(res)
             navigateBack("/")

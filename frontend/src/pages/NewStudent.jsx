@@ -12,7 +12,7 @@ const NewStudent = () => {
 
         // posts the data to the API
         e.preventDefault()
-        axios.post("http://localhost:4000/new_student", { name, email })    // name and email are the req values
+        axios.post("https://students-sern-stack-production.up.railway.app/new_student", { name, email })    // name and email are the req values
         .then(res => {
             console.log(res)
             navigateBack("/")
